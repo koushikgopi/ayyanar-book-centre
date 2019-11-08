@@ -1,1 +1,14 @@
 /* You can add global styles to this file, and also import other style files */
+.card{
+    margin-left: 70px;  
+}
+
+.card-img{
+
+    width: 80%!important;
+    height: 300px;
+    margin: 20px 28px;
+}
+.container{
+    text-align: center;
+}
