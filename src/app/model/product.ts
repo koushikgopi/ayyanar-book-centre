@@ -1,5 +1,6 @@
 export interface ProductDescription {
-    name: string;
+    id: number;
+    Product_name: string;
     image: string;
     description: string;
     imageAlt: string;

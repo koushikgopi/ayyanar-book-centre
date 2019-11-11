@@ -1,0 +1,9 @@
+<div class="card" *ngIf="product.isAvailable" style="width: 18rem;" >
+    <img [src]="product.image" class=" card-img" alt="..." >
+    <div class="card-body">
+      <h5 class="card-title">{{product.Product_name}}</h5>
+      <p class="card-price">${{product.price}}</p>
+      <p class="card-text">{{product.description}}</p>
+      <button href="#" class="btn btn-primary"  routerLink="/addcart" routerLinkActive="active" >Add Cart</button>
+    </div>
+  </div>
