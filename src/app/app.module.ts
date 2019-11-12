@@ -9,6 +9,7 @@ import { AddProductComponent } from './add-product/add-product.component';
 import { AddcartComponent } from './addcart/addcart.component';
 import { ProductdetailComponent } from './productdetail/productdetail.component';
 import { ReactiveFormsModule } from '@angular/forms';
+import {HttpClientModule} from '@angular/common/http';
 
 
 const appRoutes: Routes = [
@@ -43,6 +44,8 @@ const appRoutes: Routes = [
       appRoutes,
     ),
     ReactiveFormsModule,
+    HttpClientModule,
+    BrowserModule
   ],
   providers: [],
   bootstrap: [AppComponent]

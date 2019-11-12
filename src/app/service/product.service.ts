@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { ProductDescription } from '../model/product';
-
+import { HttpClient } from '@angular/common/http';
 
 @Injectable({
   providedIn: 'root'
@@ -84,7 +84,7 @@ private  products: Array<ProductDescription> = [
 }
 ];
 
-  constructor() { }
+  constructor( private http: HttpClient) { }
 
   getProduct() {
 
