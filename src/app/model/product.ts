@@ -1,7 +1,7 @@
 export interface ProductDescription {
     id: number;
-    Product_name: string;
-    image: string;
+    title: string;
+    imageUrl: string;
     description: string;
     imageAlt: string;
     isAvailable: boolean;

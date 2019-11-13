@@ -1,6 +1,8 @@
 import { Component, OnInit, } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { ProductService } from '../service/product.service';
+import { ActivatedRoute } from '@angular/router';
+import { HttpClient } from 'selenium-webdriver/http';
 
 @Component({
   selector: 'app-add-product',
@@ -10,31 +12,68 @@ import { ProductService } from '../service/product.service';
 export class AddProductComponent implements OnInit {
 
   myForm: FormGroup;
+  routeSub: any;
+  id: any;
+  data: any;
+
+
 
   constructor(
-    private productService: ProductService
+    private productService: ProductService, private route: ActivatedRoute
   ) { }
 
   ngOnInit() {
-this.myForm = new FormGroup({
-  Product_name: new FormControl('', Validators.required ),
-  price: new FormControl(),
-  description: new FormControl('', Validators.maxLength(10)),
-  Email: new FormControl('', Validators.email),
-  image: new FormControl('', Validators.required),
-  isAvailable: new FormControl('', Validators.required),
+    this.myForm = new FormGroup({
+      title: new FormControl('', Validators.required),
+      price: new FormControl(),
+      description: new FormControl('', Validators.maxLength(100)),
+      Email: new FormControl('', Validators.email),
+      imageUrl: new FormControl('', Validators.required),
+      isAvailable: new FormControl('', Validators.required),
 
-});
-console.log(this.myForm);
+    });
+    console.log(this.myForm);
+    this.route.params.subscribe(params => {
+      this.id = +params.id;
+      // tslint:disable-next-line:align
+      console.log(params);
+      this.productService.filterProduct(this.id).subscribe(Response => {
+        this.data = Response;
+        this.myForm.patchValue({
+          title: this.data.title,
+          description: this.data.description,
+          imageUrl: this.data.imageUrl,
+          price: this.data.price,
+          isAvailable: this.data.isAvailable,
+
+        });
+      });
+
+
+
+    });
 
 
   }
 
   onSubmit(form: FormGroup) {
-    this.productService.addProduct(this.myForm.value);
+    if(this.id){
+      this.productService.updateProduct(form.value, this.id).subscribe(data =>{console.log(data);
+      });
+    }
+    else{
+      this.productService.addProduct(this.myForm.value).subscribe(Response => { console.log(Response); });
+
+    }
+
+
 
     console.log(this.myForm.value);
   }
 
+  delete(){
+    this.productService.deleteProduct(this.id).subscribe(data =>{console.log(data);});
+
+  }
 
 }

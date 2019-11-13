@@ -25,6 +25,14 @@ const appRoutes: Routes = [
   {
     path: 'addcart',
     component: AddcartComponent
+  },
+  {
+    path: 'productdetail/:id',
+    component: ProductdetailComponent
+  },
+  {
+    path: 'addproduct/:id',
+    component: AddProductComponent
   }
 ];
 

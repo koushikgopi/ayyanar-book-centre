@@ -1,9 +1,7 @@
 <div class="container">
-        <div class="row">
-        <div  *ngFor="let item of prod" >
-          <app-productdetail [product]='item'></app-productdetail>
-        </div>
-        
-        
-        </div>
-        </div>
+  <div class="row" *ngIf='prod'>
+    <div *ngFor="let item of prod">
+      <app-productdetail [product]='item'></app-productdetail>
+    </div>
+  </div>
+</div>

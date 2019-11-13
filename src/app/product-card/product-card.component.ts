@@ -8,14 +8,17 @@ import { ProductService } from '../service/product.service';
 })
 export class ProductCardComponent implements OnInit {
 
-  prod;
+  prod: any;
 
   constructor(private service: ProductService) {
-    this.prod = this.service.getProduct();
-   }
+  }
 
 
   ngOnInit() {
+    this.service.getProduct().subscribe(Response => {
+      this.prod = Response;
+      console.log(this.prod);
+    });
   }
 
 }
